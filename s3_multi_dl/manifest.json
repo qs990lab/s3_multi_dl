@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "S3MultipleDownloader",
+    "description": "Download s3 objects all at once",
+    "version": "0.0.1",
+    "icons": {
+        "16" : "s3_16.png",
+        "48" : "s3_48.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://s3.console.aws.amazon.com/s3/buckets/*"],
+            "js": ["script.js"]
+        }
+    ]
+}
