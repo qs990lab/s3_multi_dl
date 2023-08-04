@@ -1,6 +1,6 @@
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-let dl_btn = document.getElementById("download-object-button");
-var getS3Obj = async () => {
+const getS3Obj = async () => {
+    const dl_btn = document.getElementById("download-object-button");
     let target=[];
     let input_list = document.querySelectorAll("input[type=checkbox]:checked");
 
@@ -24,7 +24,28 @@ var getS3Obj = async () => {
     });
 }
 
-let btn = document.createElement("button");
-btn.innerHTML = "DL Selected";
-btn.addEventListener("click",getS3Obj);
-dl_btn.parentNode.insertBefore(btn, dl_btn.nextElementSibling);
+// 拡張ダウンロードボタンを配置する
+// icon: https://css.gg/arrow-down-o
+const putButton = () => {
+    const append_btn = document.getElementById("append-button");
+    if (append_btn == null) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'append-button';
+        btn.onclick = getS3Obj;
+        btn.className = 'gg-arrow-down-o';
+        const pos = document.getElementById("download-object-button");
+        pos.parentNode.parentNode.insertBefore(btn, pos.parentNode.nextSibling);
+    } 
+}
+// 変更を監視
+const target = document.querySelector('body');
+//const target = document.querySelector('[aria-label="パンくずリスト"]');
+// const target = document.getElementById("download-object-button");
+const options = {
+    childList: true,
+    attributes: true,
+}
+const observer = new MutationObserver(putButton);
+observer.observe(target, options);
+// putButton();
