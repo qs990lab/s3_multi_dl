@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "S3MultipleDownloader",
     "description": "Download checked s3 objects all at once",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "icons": {
         "48" : "s3_48.png"
     },
