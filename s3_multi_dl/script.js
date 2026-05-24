@@ -1,3 +1,5 @@
+(function() {
+if (document.getElementById("append-button")) return;
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // 設定を取得
@@ -221,3 +223,5 @@ const options = {
 }
 const observer = new MutationObserver(() => { try { putButton(); } catch(e) {} });
 observer.observe(target, options);
+putButton();
+})();

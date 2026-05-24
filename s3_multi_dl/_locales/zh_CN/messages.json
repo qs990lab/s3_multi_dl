@@ -1,0 +1,4 @@
+{
+  "extName": { "message": "S3 Batch Downloader" },
+  "extDescription": { "message": "一键批量下载已选中的S3对象" }
+}

@@ -37,3 +37,7 @@
 | **S3 Bulk Saver** | 短くユニーク |
 
 推奨: **S3 Batch Download** — 自然な英語で競合と差別化でき、検索性も良い。
+
+## 決定
+
+**S3 Batch Downloader** に変更（2026-05-24）

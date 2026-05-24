@@ -1,8 +1,8 @@
-# S3 Multiple Downloader 改善提案
+# S3 Batch Downloader 改善提案
 
 ## 既知の制限事項・バグ修正
 
-- [ ] 初回表示時にリロードが必要（SPA遷移でContent Scriptが注入されない）
+- [x] 初回表示時にリロードが必要（SPA遷移でContent Scriptが注入されない）
   - Background Scriptで `webNavigation.onHistoryStateUpdated` を使い動的に注入する
 - [ ] AWSコンソールの画面構造（ID、クラス名）への依存が強い
 
@@ -28,13 +28,15 @@
 
 ## manifest.json
 
-- [ ] `permissions` 追加（`storage`, `notifications` 等）
-- [ ] アイコンの複数サイズ対応（16, 32, 48, 128px）
-- [ ] `_locales` による多言語対応（日英）
+- [x] `permissions` 追加（`storage`, `webNavigation`, `scripting`）
+- [x] アイコン 128px を用意
+- [ ] プロモーション画像 小タイル（440×280）を用意
+- [ ] スクリーンショット追加（設定画面、再帰DL動作中など）
+- [x] `_locales` による多言語対応（日英中）
 
 ## 名前・ブランディング
 
-- [ ] 名前の変更検討（現状「S3MultipleDownloader」）
+- [x] 名前の変更検討（現状「S3MultipleDownloader」→「S3 Batch Downloader」に決定）
   - 競合「S3 Multi File Downloader」と紛らわしい
   - "Multiple Downloader" は英語としてやや不自然
   - 候補: **S3 Batch Download** / **Bulk Download for S3** / **S3 Bulk Saver**
