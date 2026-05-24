@@ -1,0 +1,4 @@
+{
+  "extName": { "message": "S3 Multiple Downloader" },
+  "extDescription": { "message": "チェックしたS3オブジェクトを一括ダウンロード" }
+}

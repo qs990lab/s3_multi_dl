@@ -1,0 +1,4 @@
+{
+  "extName": { "message": "S3 Batch Downloader" },
+  "extDescription": { "message": "Download multiple checked S3 objects at once" }
+}

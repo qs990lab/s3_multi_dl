@@ -1,53 +1,82 @@
-# S3 Multiple Downloader
+# S3 Batch Downloader
+
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hkfgcimbcdngoekajjianmgelbhlckch)](https://chromewebstore.google.com/detail/hkfgcimbcdngoekajjianmgelbhlckch)
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/hkfgcimbcdngoekajjianmgelbhlckch)](https://chromewebstore.google.com/detail/hkfgcimbcdngoekajjianmgelbhlckch)
 
 AWSマネジメントコンソールのS3画面で、複数のオブジェクトを一括でダウンロードできるChrome拡張機能です。
 
+AWSコンソール標準のダウンロードボタンは1ファイルずつしかダウンロードできませんが、この拡張機能を使えば、チェックを入れた複数ファイルをワンクリックで順次ダウンロードできます。
+
+![Screenshot](assets/s3_multi_dl_pic.png)
+
 ## 機能
 
-- S3バケット内の複数オブジェクトを選択して一括ダウンロード
-- AWSマネジメントコンソールのS3画面に専用ボタンを追加
-- チェックボックスで選択したオブジェクトを順次ダウンロード
+- ✅ 複数オブジェクトを選択して一括ダウンロード
+- ✅ フォルダ（プレフィックス）の再帰ダウンロード（設定でon/off切替）
+- ✅ S3画面に専用ダウンロードボタンを追加
+- ✅ ページリロード不要（SPA遷移に対応）
+- ✅ 多言語対応（日本語・English・中文）
 
-## インストール方法
+## インストール
 
-[Chromeウェブストア](https://chrome.google.com/webstore)から「S3 Multiple Downloader」を検索してインストールしてください。
+[Chrome ウェブストア](https://chromewebstore.google.com/detail/hkfgcimbcdngoekajjianmgelbhlckch)からインストールしてください。
 
-### 開発者向けインストール方法
+## 使い方
 
-1. このリポジトリをクローンまたはダウンロード
-2. Chromeで `chrome://extensions/` を開く
-3. 右上の「デベロッパーモード」を有効にする
-4. 「パッケージ化されていない拡張機能を読み込む」をクリック
-5. `s3_multi_dl/s3_multi_dl` フォルダを選択
-
-## 使用方法
-
-1. AWSマネジメントコンソールのS3バケット画面を開く
+1. S3バケットのオブジェクト一覧画面を開く
 2. ダウンロードしたいオブジェクトにチェックを入れる
-3. 追加された丸いダウンロードボタン（↓アイコン）をクリック
+3. 丸いダウンロードボタン（↓）をクリック
 4. 選択したオブジェクトが順次ダウンロードされます
 
-## 技術仕様
+### 再帰ダウンロード
 
-- **対象URL**: `https://*.console.aws.amazon.com/s3/buckets/*`
-- **Manifest Version**: 3
-- **ダウンロード間隔**: 1秒間隔で順次実行
+フォルダを選択した場合、中のファイルを再帰的にダウンロードできます。
 
-## ファイル構成
+1. 拡張機能アイコンをクリックして設定画面を開く
+2. 「フォルダ再帰DL」をONにする
+3. フォルダにチェックを入れてダウンロードボタンをクリック
+4. フォルダ内のファイルが自動的にダウンロードされます
+
+## 開発者向け
+
+### ローカルインストール
+
+```bash
+git clone https://github.com/qs990lab/s3_multi_dl.git
+```
+
+1. Chromeで `chrome://extensions/` を開く
+2. 「デベロッパーモード」を有効にする
+3. 「パッケージ化されていない拡張機能を読み込む」→ `s3_multi_dl` フォルダを選択
+
+### デプロイ
+
+```bash
+bash deploy.sh
+# → s3-multi-dl-{version}.zip が生成される
+```
+
+### ファイル構成
 
 ```
 s3_multi_dl/
-├── manifest.json    # 拡張機能の設定ファイル
-├── script.js        # メイン機能のJavaScript
+├── manifest.json    # 拡張機能の設定
+├── background.js    # SPA遷移検知・Content Script注入
+├── script.js        # メイン機能
 ├── script.css       # ボタンのスタイル
-└── s3_48.png        # 拡張機能のアイコン
+├── popup.html       # 設定画面
+├── popup.js         # 設定画面のロジック
+├── s3_48.png        # アイコン（48px）
+├── s3_128.png       # アイコン（128px）
+└── _locales/        # 多言語対応（日英中）
 ```
 
 ## 注意事項
 
-- この拡張機能はAWSマネジメントコンソールの画面構造に依存しているため、AWSの画面更新により動作しなくなる可能性があります
-- 大量のファイルを一度にダウンロードする際は、ブラウザの設定やネットワーク環境にご注意ください
+- AWSマネジメントコンソールの画面構造に依存しているため、AWS側の更新で動作しなくなる可能性があります
+- 大量のファイルをダウンロードする際は、ブラウザの設定やネットワーク環境にご注意ください
+- 再帰ダウンロードは深い階層やファイル数が多い場合、時間がかかります
 
 ## ライセンス
 
-MIT License - 詳細は [LICENSE](LICENSE) ファイルをご覧ください。
+MIT License - [LICENSE](LICENSE)
