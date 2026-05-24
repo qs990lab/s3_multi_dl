@@ -6,6 +6,11 @@
     "icons": {
         "48" : "s3_48.png"
     },
+    "permissions": ["storage"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "s3_48.png"
+    },
     "content_scripts": [
         {
             "matches": ["https://*.console.aws.amazon.com/s3/buckets/*"],
